@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* Force clear, crisp black font color for all input and form controls so user typing is always easily readable */
+input,
+textarea,
+select {
+  color: #09090b !important;
+  background-color: #ffffff;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8 !important;
+}

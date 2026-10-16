@@ -1,0 +1,921 @@
+import { StudentProfile, SubjectGrade, CompetitionGoal, UserSession } from '../types';
+
+export const defaultTeacher: UserSession = {
+  id: 'teacher-nguyenvanB',
+  username: 'nguyenvanB',
+  fullName: 'Thầy Nguyễn Văn B',
+  role: 'teacher',
+  title: 'Giáo Viên Chủ Nhiệm 11A1',
+  classRoom: '11A1 (Chuyên Tự Nhiên)',
+  schoolName: 'THPT Chu Văn An',
+};
+
+export const initialProfile: StudentProfile = {
+  id: 'student-01',
+  username: 'hs_nam',
+  studentCode: 'HS2025-0892',
+  fullName: 'Nguyễn Hoàng Nam',
+  classRoom: '11A1 (Chuyên Tự Nhiên)',
+  schoolName: 'THPT Chu Văn An',
+  academicYear: '2025 - 2026',
+  semester: 'hk2',
+  standard: 'tt22',
+  conduct: 'Tốt',
+  isGradeLocked: true, // Học sinh không thể tự sửa điểm
+  certificates: [
+    {
+      type: 'IELTS',
+      score: 6.5,
+      dateAcquired: '12/2025',
+      equivalentCompetencyScore: 150,
+    },
+  ],
+  achievements: [
+    {
+      id: 'ach-1',
+      title: 'Giải Ba Học Sinh Giỏi Môn Toán Cấp Cụm / Trường',
+      category: 'academic',
+      level: 'district',
+      year: '2025',
+      points: 30,
+    },
+    {
+      id: 'ach-2',
+      title: 'Trưởng Ban Truyền Thông CLB Khoa Học Trẻ STEM',
+      category: 'leadership',
+      level: 'school',
+      year: '2025-2026',
+      points: 25,
+    },
+  ],
+  teacherComments: [
+    {
+      id: 'tc-01',
+      teacherId: 'teacher-01',
+      teacherName: 'Cô Nguyễn Thị Mai',
+      teacherTitle: 'Giáo Viên Chủ Nhiệm & Tổ Trưởng Môn Toán',
+      date: '15/03/2026',
+      semester: 'Học kỳ 2 (Giữa kỳ)',
+      academicComment: 'Em Nam có tư duy logic môn Toán (8.3) và Tin học (9.3) rất tốt, tiếp thu nhanh các dạng bài trắc nghiệm vận dụng cao. Điểm kiểm tra thường xuyên duy trì ổn định. Môn Hóa học (7.3) và Ngữ văn (7.7) cần tập trung ôn tập thêm trước đợt thi học kỳ để đạt học lực Xuất sắc.',
+      conductComment: 'Ý thức chấp hành nội quy và nề nếp lớp học rất tốt. Tham gia tích cực các hoạt động phong trào Đoàn trường và ban điều hành CLB STEM. Biết giúp đỡ bạn bè trong học tập.',
+      competencyEvaluation: 'Năng lực tư duy định lượng & giải quyết vấn đề đạt mức 850/1000, rất phù hợp với kỳ thi Đánh Giá Năng Lực ĐHQG TP.HCM hoặc xét tuyển khối A00/A01. Cần rèn luyện thêm sự cẩn thận ở các bài toán thực tế có lời văn.',
+      recommendations: 'Tập trung bám sát Lộ trình luyện tập ĐGNL trên hệ thống, hoàn thành bài tập củng cố môn Hóa 2 buổi/tuần và luyện đề thi thử theo đúng thời gian quy định.',
+    },
+  ],
+};
+
+export const initialSubjects: SubjectGrade[] = [
+  {
+    id: 'sub-math',
+    name: 'Toán học',
+    code: 'MATH',
+    regularGrades: [8.5, 8.0, 9.0, 8.0],
+    midtermGrade: 8.5,
+    finalGrade: 8.0,
+    averageGrade: 8.3,
+    targetGrade: 9.0,
+    isCoreSubject: true,
+    category: 'natural',
+  },
+  {
+    id: 'sub-lit',
+    name: 'Ngữ văn',
+    code: 'LIT',
+    regularGrades: [7.5, 8.0, 7.5],
+    midtermGrade: 8.0,
+    finalGrade: 7.5,
+    averageGrade: 7.7,
+    targetGrade: 8.0,
+    isCoreSubject: false,
+    category: 'social',
+  },
+  {
+    id: 'sub-eng',
+    name: 'Tiếng Anh',
+    code: 'ENG',
+    regularGrades: [9.0, 8.5, 9.0],
+    midtermGrade: 8.5,
+    finalGrade: 9.0,
+    averageGrade: 8.8,
+    targetGrade: 9.2,
+    isCoreSubject: true,
+    category: 'foreign_lang',
+  },
+  {
+    id: 'sub-phys',
+    name: 'Vật lí',
+    code: 'PHYS',
+    regularGrades: [8.0, 8.5, 8.0],
+    midtermGrade: 8.0,
+    finalGrade: 8.5,
+    averageGrade: 8.2,
+    targetGrade: 8.8,
+    isCoreSubject: true,
+    category: 'natural',
+  },
+  {
+    id: 'sub-chem',
+    name: 'Hóa học',
+    code: 'CHEM',
+    regularGrades: [7.0, 7.5, 7.5],
+    midtermGrade: 7.5,
+    finalGrade: 7.0,
+    averageGrade: 7.3,
+    targetGrade: 8.5,
+    isCoreSubject: true,
+    category: 'natural',
+  },
+  {
+    id: 'sub-bio',
+    name: 'Sinh học',
+    code: 'BIO',
+    regularGrades: [8.0, 8.5, 9.0],
+    midtermGrade: 8.5,
+    finalGrade: 8.5,
+    averageGrade: 8.5,
+    targetGrade: 8.5,
+    isCoreSubject: false,
+    category: 'natural',
+  },
+  {
+    id: 'sub-his',
+    name: 'Lịch sử',
+    code: 'HIS',
+    regularGrades: [8.5, 9.0, 8.5],
+    midtermGrade: 8.5,
+    finalGrade: 8.0,
+    averageGrade: 8.4,
+    targetGrade: 8.5,
+    isCoreSubject: false,
+    category: 'social',
+  },
+  {
+    id: 'sub-geo',
+    name: 'Địa lí',
+    code: 'GEO',
+    regularGrades: [8.0, 8.5, 8.0],
+    midtermGrade: 8.5,
+    finalGrade: 8.0,
+    averageGrade: 8.2,
+    targetGrade: 8.5,
+    isCoreSubject: false,
+    category: 'social',
+  },
+  {
+    id: 'sub-it',
+    name: 'Tin học',
+    code: 'IT',
+    regularGrades: [9.5, 9.0, 9.5],
+    midtermGrade: 9.0,
+    finalGrade: 9.5,
+    averageGrade: 9.3,
+    targetGrade: 9.5,
+    isCoreSubject: true,
+    category: 'natural',
+  },
+  {
+    id: 'sub-gdkt',
+    name: 'GDKT & Pháp luật',
+    code: 'GDKT',
+    regularGrades: [8.5, 9.0, 8.5],
+    midtermGrade: 9.0,
+    finalGrade: 8.5,
+    averageGrade: 8.7,
+    targetGrade: 9.0,
+    isCoreSubject: false,
+    category: 'social',
+  },
+];
+
+export const defaultGoals: CompetitionGoal[] = [
+  {
+    id: 'goal-dgnl-hcm',
+    title: 'Kỳ thi Đánh Giá Năng Lực ĐHQG TP.HCM (VNU-HCM APT 2026)',
+    category: 'exam',
+    description: 'Kỳ thi chuẩn hóa xét tuyển vào hơn 100 trường đại học hàng đầu phía Nam. Bài thi 120 câu trắc nghiệm đánh giá năng lực ngôn ngữ, toán học, tư duy logic và giải quyết vấn đề khoa học.',
+    tags: [
+      '#ĐGNL_ĐHQGHCM',
+      '#ThangĐiểm_1200',
+      '#Toán_Logic_XácSuất',
+      '#TiếngViệt_TiếngAnh',
+      '#MụcTiêu_850+',
+      '#ĐạiHọcBáchKhoa_KHTN_KinhTế',
+    ],
+    requiredScore: 850,
+    benchmarkWeights: {
+      academicGpa: 300,
+      coreSubjects: 400,
+      languageCert: 200,
+      activities: 100,
+    },
+    criteria: [
+      {
+        name: 'GPA học bạ THPT',
+        requirement: 'ĐTB các môn từ 8.0 trở lên để kết hợp xét tuyển sớm',
+        importance: 'mandatory',
+      },
+      {
+        name: 'Môn Toán & Tư duy Logic',
+        requirement: 'Nắm chắc kiến thức toán hàm số, tích phân, xác suất thống kê và bài toán logic',
+        importance: 'mandatory',
+      },
+      {
+        name: 'Năng lực Ngoại ngữ',
+        requirement: 'Tiếng Anh đọc hiểu tốc độ cao (tương đương IELTS 6.0+)',
+        importance: 'recommended',
+      },
+      {
+        name: 'Khoa học tổng hợp',
+        requirement: 'Khả năng đọc hiểu biểu đồ, xử lý số liệu KHTN và KHXH',
+        importance: 'mandatory',
+      },
+    ],
+    recommendedRoadmaps: [
+      {
+        id: 'rd-dgnl-sprint',
+        title: 'Lộ trình 30 ngày "Nước Rút" - Tối ưu 850+ ĐGNL',
+        type: 'sprinter',
+        durationWeeks: 4,
+        hoursPerDay: 2.5,
+        targetIncrease: 90,
+        overview: 'Tập trung luyện đề thực chiến, giải quyết nhanh các câu hỏi xử lý số liệu và logic suy đoán.',
+        weeklyTasks: [
+          {
+            week: 1,
+            focus: 'Xử lý số liệu biểu đồ & Logic suy đoán',
+            exercises: 'Luyện 50 câu đọc biểu đồ tròn/cột và 30 câu toán logic mệnh đề có đáp án chi tiết',
+          },
+          {
+            week: 2,
+            focus: 'Tiếng Việt học thuật & Đọc hiểu Tiếng Anh',
+            exercises: 'Giải 4 đề phần Ngôn ngữ (mỗi đề 40 câu), tổng hợp từ vựng chuyên ngành',
+          },
+          {
+            week: 3,
+            focus: 'Giải quyết vấn đề KHTN: Lý - Hóa - Sinh',
+            exercises: 'Làm 60 câu ứng dụng thực tế thí nghiệm, xử lý đồ thị vật lý và hóa học',
+          },
+          {
+            week: 4,
+            focus: 'Thi thử bấm giờ 150 phút & Chiến thuật khoanh điểm',
+            exercises: 'Làm 3 đề thi thử trọn vẹn, phân bổ thời gian 1 phút/câu, sửa các lỗi bẫy',
+          },
+        ],
+      },
+      {
+        id: 'rd-dgnl-balanced',
+        title: 'Lộ trình 60 ngày Toàn diện - Vững nền tảng bứt phá 900+',
+        type: 'balanced',
+        durationWeeks: 8,
+        hoursPerDay: 1.5,
+        targetIncrease: 130,
+        overview: 'Học song song củng cố bài trên lớp và luyện chuyên đề ĐGNL 4 buổi/tuần.',
+        weeklyTasks: [
+          {
+            week: 1,
+            focus: 'Chuyên đề 1: Toán học đại số & Phương trình mũ logarit',
+            exercises: 'Làm 40 bài tập phân loại mức độ vận dụng',
+          },
+          {
+            week: 2,
+            focus: 'Chuyên đề 2: Xác suất cổ điển & Phân bố nhị thức',
+            exercises: 'Giải 35 câu xác suất chọn nhóm và trò chơi thực tế',
+          },
+          {
+            week: 3,
+            focus: 'Chuyên đề 3: Logic bảng sự thật & Xếp chỗ vị trí',
+            exercises: 'Luyện 45 câu logic dạng kịch bản điều tra, xếp phòng',
+          },
+          {
+            week: 4,
+            focus: 'Chuyên đề 4: Đọc hiểu văn bản Tiếng Việt hiện đại',
+            exercises: 'Luyện 30 câu nhận diện phong cách chức năng ngôn ngữ',
+          },
+          {
+            week: 5,
+            focus: 'Chuyên đề 5: Tiếng Anh ngữ pháp nâng cao & Điền từ',
+            exercises: 'Hoàn thành 50 câu cloze test và đọc hiểu đoạn văn',
+          },
+          {
+            week: 6,
+            focus: 'Chuyên đề 6: Khoa học Tự nhiên & Ứng dụng thực tiễn',
+            exercises: 'Ôn tập 40 câu hỏi hiện tượng đời sống',
+          },
+          {
+            week: 7,
+            focus: 'Luyện đề tổng hợp số 1 & số 2',
+            exercises: 'Đo lường thời gian làm bài, ghi chép nhật ký sai sót',
+          },
+          {
+            week: 8,
+            focus: 'Luyện đề tổng hợp số 3 & số 4 + Tối ưu hóa điểm số',
+            exercises: 'Thi thử mô phỏng phòng thi thật, sẵn sàng tâm lý',
+          },
+        ],
+      },
+    ],
+    createdBy: 'Hệ thống EduTrack AI',
+    createdAt: '2026-01-15T08:00:00Z',
+  },
+  {
+    id: 'goal-thpt-a00',
+    title: 'Thi Tốt Nghiệp THPT 2026 & Xét Tuyển Khối A00 (Toán - Lý - Hóa 27+)',
+    category: 'exam',
+    description: 'Mục tiêu đạt điểm 9+ mỗi môn Toán, Vật lí, Hóa học trong kỳ thi Tốt nghiệp THPT theo chuẩn đề thi mới của Bộ Giáo Dục để xét tuyển Đại học Bách Khoa, Quốc Gia.',
+    tags: [
+      '#ThiTốtNghiệpTHPT',
+      '#Khối_A00',
+      '#MụcTiêu_27+',
+      '#ĐềMới2026',
+      '#ĐúngSai_TrảLờiNgắn',
+      '#BáchKhoa_HàNội_TPHCM',
+    ],
+    requiredScore: 880,
+    benchmarkWeights: {
+      academicGpa: 300,
+      coreSubjects: 500,
+      languageCert: 100,
+      activities: 100,
+    },
+    criteria: [
+      {
+        name: 'Điểm Toán học bạ & kiểm tra',
+        requirement: 'ĐTB môn Toán đạt >= 8.8, làm chủ dạng trắc nghiệm đúng/sai',
+        importance: 'mandatory',
+      },
+      {
+        name: 'Điểm Vật lí & Hóa học',
+        requirement: 'ĐTB môn Lý & Hóa đạt >= 8.5',
+        importance: 'mandatory',
+      },
+      {
+        name: 'Thao tác giải nhanh & Kỹ năng Casio',
+        requirement: 'Thành thạo bấm máy tính khoa học và phương pháp loại trừ',
+        importance: 'recommended',
+      },
+    ],
+    recommendedRoadmaps: [
+      {
+        id: 'rd-a00-mastery',
+        title: 'Lộ trình Chuyên sâu 10 tuần: Khóa chặt điểm 9+ Khối A00',
+        type: 'mastery',
+        durationWeeks: 10,
+        hoursPerDay: 3,
+        targetIncrease: 110,
+        overview: 'Chia đều thời lượng cho 3 môn: Toán (40%), Lý (30%), Hóa (30%), chú trọng các dạng câu hỏi trả lời ngắn đề mới.',
+        weeklyTasks: [
+          {
+            week: 1,
+            focus: 'Toán: Vận dụng cao Hàm số, Đơn điệu & Cực trị',
+            exercises: 'Giải 30 bài toán tham số m cực trị hàm hợp',
+          },
+          {
+            week: 2,
+            focus: 'Lý: Dao động cơ & Sóng cơ chuyên sâu',
+            exercises: 'Luyện 25 bài đồ thị dao động và giao thoa sóng',
+          },
+          {
+            week: 3,
+            focus: 'Hóa: Hóa học hữu cơ & Bài toán Este peptit mô hình mới',
+            exercises: 'Luyện 20 bài quy đổi este đa chức',
+          },
+          {
+            week: 4,
+            focus: 'Toán: Tọa độ không gian Oxyz & Ứng dụng thực tế',
+            exercises: 'Làm 25 câu mô hình hóa hình học thực tiễn',
+          },
+          {
+            week: 5,
+            focus: 'Luyện đề phối hợp Toán - Lý - Hóa tuần 5',
+            exercises: 'Làm trọn bộ 1 đề thi thử mỗi môn, bấm giờ chuẩn',
+          },
+        ],
+      },
+    ],
+    createdBy: 'Hệ thống EduTrack AI',
+    createdAt: '2026-01-20T08:00:00Z',
+  },
+  {
+    id: 'goal-gpa-boost',
+    title: 'Cải Thiện Điểm Số: Bứt Phá Môn Hóa & Toán Lên 8.5+ Học Kỳ Này',
+    category: 'academic_boost',
+    description: 'Kế hoạch học tập ngắn hạn hỗ trợ học sinh có môn Hóa học (hiện tại 7.3) và môn Toán (8.3) cần gỡ điểm kiểm tra định kỳ để đạt danh hiệu Học sinh Xuất Sắc học kỳ này.',
+    tags: [
+      '#CảiThiệnĐiểmSố',
+      '#GỡĐiểmHóaHọc',
+      '#NângGPA_Lên8.5',
+      '#HọcSinhXuấtSắc',
+      '#vnEdu_HọcKỳ2',
+    ],
+    requiredScore: 780,
+    benchmarkWeights: {
+      academicGpa: 450,
+      coreSubjects: 450,
+      languageCert: 50,
+      activities: 50,
+    },
+    criteria: [
+      {
+        name: 'Khắc phục bài kiểm tra thường xuyên',
+        requirement: 'Đạt tối thiểu 8.5 ở bài kiểm tra 15p kế tiếp môn Hóa',
+        importance: 'mandatory',
+      },
+      {
+        name: 'Điểm thi học kỳ (ĐGCK)',
+        requirement: 'Điểm thi cuối kỳ môn Hóa đạt >= 8.5, môn Toán >= 9.0',
+        importance: 'mandatory',
+      },
+    ],
+    recommendedRoadmaps: [
+      {
+        id: 'rd-gpa-rescue',
+        title: 'Chiến dịch "Cứu" Điểm Hóa & Tăng Tốc Toán trong 3 tuần',
+        type: 'sprinter',
+        durationWeeks: 3,
+        hoursPerDay: 1.5,
+        targetIncrease: 80,
+        overview: 'Tập trung bám sát đề cương ôn tập giữa kỳ và cuối kỳ trên trường, giải đề mẫu của thầy cô bộ môn.',
+        weeklyTasks: [
+          {
+            week: 1,
+            focus: 'Lấy lại căn bản Lý thuyết Hóa học hữu cơ & Vô cơ',
+            exercises: 'Làm 100 câu trắc nghiệm lý thuyết chống sai ngu môn Hóa',
+          },
+          {
+            week: 2,
+            focus: 'Rèn dạng toán điển hình thường ra trong đề 1 tiết',
+            exercises: 'Giải 5 đề kiểm tra 1 tiết mẫu của tổ bộ môn',
+          },
+          {
+            week: 3,
+            focus: 'Thi thử trực tiếp & Rà soát bảng điểm vnEdu',
+            exercises: 'Kiểm tra chéo kết quả, hoàn thành bài tập nộp giáo viên lấy điểm cộng',
+          },
+        ],
+      },
+    ],
+    createdBy: 'Hội Đồng Cố Vấn Học Tập EduTrack',
+    createdAt: '2026-02-01T08:00:00Z',
+  },
+  {
+    id: 'goal-scholarship-vinuni',
+    title: 'Học Bổng Tài Năng Đại Học Quốc Tế 70% - 100% (VinUni / RMIT / Fulbright)',
+    category: 'scholarship',
+    description: 'Chương trình xét duyệt ứng viên có thành tích học tập vượt trội, năng lực tiếng Anh, bài luận cá nhân truyền cảm hứng và tinh thần cống hiến cộng đồng.',
+    tags: [
+      '#HọcBổngĐạiHọc',
+      '#VinUni',
+      '#RMIT',
+      '#IELTS_7.0+',
+      '#GPA_Tren_9.0',
+      '#BàiLuậnPersonalStatement',
+      '#HồSơNgoạiKhóa',
+    ],
+    requiredScore: 920,
+    benchmarkWeights: {
+      academicGpa: 350,
+      coreSubjects: 250,
+      languageCert: 250,
+      activities: 150,
+    },
+    criteria: [
+      {
+        name: 'Học bạ 3 năm',
+        requirement: 'GPA học bạ THPT trung bình >= 8.8 (Khuyên dùng >= 9.0)',
+        importance: 'mandatory',
+      },
+      {
+        name: 'Chứng chỉ Ngoại ngữ',
+        requirement: 'IELTS >= 7.0 hoặc TOEFL iBT >= 95 hoặc Duolingo >= 125',
+        importance: 'mandatory',
+      },
+      {
+        name: 'Bài luận cá nhân (Personal Statement)',
+        requirement: 'Bài luận 650 từ thể hiện rõ mục tiêu phát triển và đóng góp xã hội',
+        importance: 'mandatory',
+      },
+      {
+        name: 'Hoạt động & Dự án',
+        requirement: 'Ít nhất 1 dự án cá nhân hoặc vị trí nòng cốt trong tổ chức/CLB',
+        importance: 'bonus',
+      },
+    ],
+    recommendedRoadmaps: [
+      {
+        id: 'rd-sch-vinuni',
+        title: 'Lộ trình 8 tuần: Hoàn thiện Hồ sơ & Bài luận Săn Học bổng',
+        type: 'mastery',
+        durationWeeks: 8,
+        hoursPerDay: 2,
+        targetIncrease: 140,
+        overview: 'Hệ thống hóa câu chuyện cá nhân, nâng band IELTS từ 6.5 lên 7.5 và chuẩn bị phỏng vấn.',
+        weeklyTasks: [
+          {
+            week: 1,
+            focus: 'Định hình Personal Brand & Điểm mạnh cá nhân',
+            exercises: 'Viết bản tóm tắt hồ sơ (Brag sheet) và 3 giá trị cốt lõi',
+          },
+          {
+            week: 2,
+            focus: 'Lập dàn ý chi tiết bài luận Personal Statement',
+            exercises: 'Lên outline 3 câu chuyện trải nghiệm định hình nhân sinh quan',
+          },
+          {
+            week: 4,
+            focus: 'Luyện đề IELTS Writing Task 2 & Speaking Part 2-3',
+            exercises: 'Viết 4 bài luận mẫu và thu âm 5 chủ đề Speaking khó',
+          },
+          {
+            week: 6,
+            focus: 'Hoàn thiện bản nháp bài luận chính (Draft 2)',
+            exercises: 'Nhờ thầy cô cố vấn feedback và trau chuốt câu từ',
+          },
+          {
+            week: 8,
+            focus: 'Mock Interview - Phỏng vấn giả lập với Hội đồng',
+            exercises: 'Luyện trả lời 20 câu hỏi phỏng vấn học bổng phổ biến nhất',
+          },
+        ],
+      },
+    ],
+    createdBy: 'Hội Đồng Tuyển Sinh Quốc Tế',
+    createdAt: '2026-02-10T08:00:00Z',
+  },
+  {
+    id: 'goal-ielts-7',
+    title: 'Mục Tiêu Chứng Chỉ: Chinh Phục IELTS 7.5 Từ Band 6.5 Trong 4 Tháng',
+    category: 'certificate',
+    description: 'Nâng band điểm toàn diện 4 kỹ năng Nghe - Nói - Đọc - Viết nhằm quy đổi điểm 10 môn Tiếng Anh trong kỳ thi Tốt nghiệp THPT và xét tuyển thẳng Đại học.',
+    tags: [
+      '#ChứngChỉNgoạiNgữ',
+      '#IELTS_7.5',
+      '#QuyĐổiĐiểm10',
+      '#TuyểnThẳngĐạiHọc',
+      '#Writing_Task2',
+      '#Speaking_Fluency',
+    ],
+    requiredScore: 840,
+    benchmarkWeights: {
+      academicGpa: 200,
+      coreSubjects: 200,
+      languageCert: 500,
+      activities: 100,
+    },
+    criteria: [
+      {
+        name: 'Trình độ nền tảng hiện tại',
+        requirement: 'Đang ở ngưỡng Band 6.0 - 6.5',
+        importance: 'mandatory',
+      },
+      {
+        name: 'Listening & Reading',
+        requirement: 'Mục tiêu đạt từ 8.0 trở lên ở 2 kỹ năng tiếp nhận',
+        importance: 'mandatory',
+      },
+      {
+        name: 'Writing & Speaking',
+        requirement: 'Mục tiêu đạt từ 6.5 - 7.0 ở 2 kỹ năng sản xuất',
+        importance: 'mandatory',
+      },
+    ],
+    recommendedRoadmaps: [
+      {
+        id: 'rd-ielts-balanced',
+        title: 'Kế hoạch 12 tuần: Bứt phá IELTS 7.5 bền vững',
+        type: 'balanced',
+        durationWeeks: 12,
+        hoursPerDay: 2,
+        targetIncrease: 120,
+        overview: 'Mỗi ngày dành 45 phút cho Nghe/Đọc và 45 phút cho Nói/Viết theo chuyên đề Cam 16-19.',
+        weeklyTasks: [
+          {
+            week: 1,
+            focus: 'Nghe hiểu dạng bài Multiple Choice & Map Labelling',
+            exercises: 'Luyện 4 bài nghe Section 2 & 3 Cambridge',
+          },
+          {
+            week: 2,
+            focus: 'Đọc hiểu kỹ thuật Skimming & Scanning dạng Matching Headings',
+            exercises: 'Giải 3 bài Passage 2-3 thời gian tối đa 20 phút/bài',
+          },
+          {
+            week: 4,
+            focus: 'Writing Task 1: Báo cáo biểu đồ đường và bảng số liệu',
+            exercises: 'Viết 5 bài Task 1 hoàn chỉnh, học cấu trúc so sánh',
+          },
+          {
+            week: 6,
+            focus: 'Writing Task 2: Dạng bài Opinion & Discussion',
+            exercises: 'Xây dựng ngân hàng ý tưởng cho 5 chủ đề Education, Technology, Environment',
+          },
+          {
+            week: 8,
+            focus: 'Speaking Part 2 & Part 3: Phương pháp phát triển ý',
+            exercises: 'Luyện 10 đề Part 2 dự đoán quý mới nhất',
+          },
+          {
+            week: 12,
+            focus: 'Full Test bấm giờ thực tế & Giữ vững tâm lý',
+            exercises: 'Làm 2 bài thi thử trọn vẹn 4 kỹ năng',
+          },
+        ],
+      },
+    ],
+    createdBy: 'CLB Tiếng Anh THPT',
+    createdAt: '2026-02-15T08:00:00Z',
+  },
+  {
+    id: 'goal-thpt-d01',
+    title: 'Thi Tốt Nghiệp THPT 2026 - Khối D01 (Toán - Ngữ Văn - Tiếng Anh 26+)',
+    category: 'exam',
+    description: 'Tổ hợp xét tuyển truyền thống vào Đại học Ngoại Thương, Kinh tế Quốc dân, Học viện Ngoại giao với mục tiêu 3 môn đạt trên 8.8 điểm.',
+    tags: [
+      '#ThiTốtNghiệpTHPT',
+      '#Khối_D01',
+      '#Toán_Văn_Anh',
+      '#NgoạiThương_FTU',
+      '#KinhTếQuốcDân_NEU',
+      '#ĐiểmChuẩn26+',
+    ],
+    requiredScore: 860,
+    benchmarkWeights: {
+      academicGpa: 350,
+      coreSubjects: 450,
+      languageCert: 150,
+      activities: 50,
+    },
+    criteria: [
+      {
+        name: 'Môn Tiếng Anh',
+        requirement: 'Điểm tổng kết >= 9.0 hoặc có IELTS >= 6.5 quy đổi',
+        importance: 'mandatory',
+      },
+      {
+        name: 'Môn Toán học',
+        requirement: 'Điểm tổng kết >= 8.5',
+        importance: 'mandatory',
+      },
+      {
+        name: 'Môn Ngữ văn',
+        requirement: 'Điểm tổng kết >= 8.0, thuần thục viết văn nghị luận xã hội và văn học',
+        importance: 'mandatory',
+      },
+    ],
+    recommendedRoadmaps: [
+      {
+        id: 'rd-d01-steady',
+        title: 'Lộ trình 8 tuần: Giữ vững Phong độ & Tối ưu Điểm Khối D01',
+        type: 'steady',
+        durationWeeks: 8,
+        hoursPerDay: 2,
+        targetIncrease: 85,
+        overview: 'Củng cố kỹ năng viết văn mạch lạc, luyện giải toán trắc nghiệm và bẫy ngữ pháp Tiếng Anh.',
+        weeklyTasks: [
+          {
+            week: 1,
+            focus: 'Văn học: Kỹ năng viết đoạn văn Nghị luận xã hội 200 chữ điểm tối đa',
+            exercises: 'Viết 4 đoạn văn về các vấn đề thời sự giới trẻ',
+          },
+          {
+            week: 2,
+            focus: 'Tiếng Anh: Trọng âm, phát âm và từ vựng đồng nghĩa/trái nghĩa',
+            exercises: 'Làm 80 câu ngữ âm và từ vựng đề thi chính thức các năm',
+          },
+          {
+            week: 4,
+            focus: 'Toán học: Xử lý dạng câu hỏi mức độ thông hiểu và vận dụng thấp',
+            exercises: 'Giải 50 câu toán chuẩn đề minh họa Bộ Giáo Dục',
+          },
+          {
+            week: 6,
+            focus: 'Luyện đề thi thử phối hợp 3 môn',
+            exercises: 'Làm 2 đề Văn, 2 đề Toán, 2 đề Anh bấm giờ',
+          },
+          {
+            week: 8,
+            focus: 'Rà soát tổng thể & Chuẩn bị phòng thi',
+            exercises: 'Xem lại các ghi chú lỗi sai và thư giãn tinh thần',
+          },
+        ],
+      },
+    ],
+    createdBy: 'Hệ thống EduTrack AI',
+    createdAt: '2026-02-18T08:00:00Z',
+  },
+];
+
+export interface StudentRecord {
+  profile: StudentProfile;
+  subjects: SubjectGrade[];
+}
+
+export const initialStudentsRoster: StudentRecord[] = [
+  {
+    profile: {
+      id: 'student-nguyenvanA',
+      username: 'nguyenvanA',
+      studentCode: 'HS2026-001A',
+      fullName: 'Nguyễn Văn A',
+      classRoom: '11A1 (Chuyên Tự Nhiên)',
+      schoolName: 'THPT Chu Văn An',
+      academicYear: '2025 - 2026',
+      semester: 'hk2',
+      standard: 'tt22',
+      conduct: 'Tốt',
+      isGradeLocked: true,
+      certificates: [
+        {
+          type: 'IELTS',
+          score: 6.5,
+          dateAcquired: '02/2026',
+          equivalentCompetencyScore: 160,
+        },
+      ],
+      achievements: [
+        {
+          id: 'ach-a-1',
+          title: 'Học Sinh Giỏi Toàn Diện Học Kỳ 1',
+          category: 'academic',
+          level: 'school',
+          year: '2025-2026',
+          points: 35,
+        },
+      ],
+      teacherComments: [
+        {
+          id: 'tc-a-1',
+          teacherId: 'teacher-nguyenvanB',
+          teacherName: 'Thầy Nguyễn Văn B',
+          teacherTitle: 'Giáo Viên Chủ Nhiệm 11A1',
+          date: '02/04/2026',
+          semester: 'Học kỳ 2',
+          academicComment: 'Em Nguyễn Văn A có thái độ học tập nghiêm túc, điểm kiểm tra thường xuyên các môn Toán (8.8), Tin học (9.2) rất tốt. Cần rèn luyện thêm tốc độ giải đề trắc nghiệm Hóa học.',
+          conductComment: 'Chăm ngoan, gương mẫu chấp hành nội quy, đoàn kết với bạn bè trong lớp.',
+          competencyEvaluation: 'Năng lực tư duy logic vững, có nhiều tiềm năng bứt phá trong kỳ thi đánh giá năng lực sắp tới.',
+          recommendations: 'Tiếp tục bám sát lộ trình ôn luyện và thường xuyên trao đổi với thầy cô bộ môn khi gặp bài khó.',
+        },
+      ],
+    },
+    subjects: initialSubjects.map(s => ({
+      ...s,
+      regularGrades: [8.5, 9.0],
+      midtermGrade: 8.5,
+      finalGrade: 8.5,
+      averageGrade: 8.6,
+    })),
+  },
+  {
+    profile: initialProfile,
+    subjects: initialSubjects,
+  },
+  {
+    profile: {
+      id: 'student-02',
+      username: 'hs_linh',
+      studentCode: 'HS2025-0893',
+      fullName: 'Trần Thảo Linh',
+      classRoom: '11A1 (Chuyên Tự Nhiên)',
+      schoolName: 'THPT Chu Văn An',
+      academicYear: '2025 - 2026',
+      semester: 'hk2',
+      standard: 'tt22',
+      conduct: 'Tốt',
+      isGradeLocked: true,
+      certificates: [
+        {
+          type: 'IELTS',
+          score: 7.5,
+          dateAcquired: '01/2026',
+          equivalentCompetencyScore: 185,
+        },
+      ],
+      achievements: [
+        {
+          id: 'ach-linh-1',
+          title: 'Giải Nhất Hùng Biện Tiếng Anh Cấp Thành Phố',
+          category: 'academic',
+          level: 'province',
+          year: '2025',
+          points: 40,
+        },
+      ],
+      teacherComments: [
+        {
+          id: 'tc-linh-1',
+          teacherId: 'teacher-01',
+          teacherName: 'Cô Nguyễn Thị Mai',
+          teacherTitle: 'Giáo Viên Chủ Nhiệm & Tổ Trưởng Môn Toán',
+          date: '16/03/2026',
+          semester: 'Học kỳ 2 (Giữa kỳ)',
+          academicComment: 'Thảo Linh học rất đều tất cả các môn, đặc biệt môn Tiếng Anh (9.5) và Toán (9.0). Ý thức tự giác và năng lực tự học xuất sắc.',
+          conductComment: 'Cán bộ lớp gương mẫu, nhiệt tình hỗ trợ các bạn trong các nhóm học tập, hạnh kiểm Tốt.',
+          competencyEvaluation: 'Năng lực toàn diện đạt 940/1000. Đủ điều kiện cạnh tranh học bổng toàn phần các trường đại học quốc tế hoặc vào thẳng trường top đầu.',
+          recommendations: 'Tiếp tục duy trì phong độ và hoàn thiện bài luận cá nhân săn học bổng.',
+        },
+      ],
+    },
+    subjects: initialSubjects.map(s => {
+      if (s.code === 'ENG') return { ...s, regularGrades: [9.5, 10, 9.5], midtermGrade: 9.5, finalGrade: 9.5, averageGrade: 9.6 };
+      if (s.code === 'MATH') return { ...s, regularGrades: [9.0, 9.0, 9.5], midtermGrade: 9.0, finalGrade: 9.0, averageGrade: 9.1 };
+      if (s.code === 'LIT') return { ...s, regularGrades: [8.5, 8.5, 9.0], midtermGrade: 8.5, finalGrade: 8.5, averageGrade: 8.6 };
+      return { ...s, averageGrade: Math.min(10, s.averageGrade + 0.6) };
+    }),
+  },
+  {
+    profile: {
+      id: 'student-03',
+      username: 'hs_quan',
+      studentCode: 'HS2025-0894',
+      fullName: 'Đỗ Minh Quân',
+      classRoom: '11A1 (Chuyên Tự Nhiên)',
+      schoolName: 'THPT Chu Văn An',
+      academicYear: '2025 - 2026',
+      semester: 'hk2',
+      standard: 'tt22',
+      conduct: 'Khá',
+      isGradeLocked: true,
+      certificates: [],
+      achievements: [
+        {
+          id: 'ach-quan-1',
+          title: 'Huy Chương Đồng Giải Bóng Rổ Học Sinh Cấp Cụm',
+          category: 'sport',
+          level: 'district',
+          year: '2025',
+          points: 20,
+        },
+      ],
+      teacherComments: [
+        {
+          id: 'tc-quan-1',
+          teacherId: 'teacher-01',
+          teacherName: 'Cô Nguyễn Thị Mai',
+          teacherTitle: 'Giáo Viên Chủ Nhiệm & Tổ Trưởng Môn Toán',
+          date: '14/03/2026',
+          semester: 'Học kỳ 2 (Giữa kỳ)',
+          academicComment: 'Quân có tinh thần thể thao năng nổ nhưng học tập còn chưa tập trung. Môn Hóa học (6.5) và Toán (7.0) bị hổng một số kiến thức cơ bản.',
+          conductComment: 'Cần nghiêm túc hơn trong giờ tự học, tránh đi học muộn.',
+          competencyEvaluation: 'Năng lực hiện tại đạt 710/1000. Cần bứt phá để đạt ngưỡng xét tuyển đại học.',
+          recommendations: 'Yêu cầu bám sát Lịch trình 30 ngày củng cố nền tảng Toán - Hóa do AI đề xuất.',
+        },
+      ],
+    },
+    subjects: initialSubjects.map(s => {
+      if (s.code === 'CHEM') return { ...s, regularGrades: [6.0, 6.5, 6.5], midtermGrade: 6.5, finalGrade: 6.5, averageGrade: 6.4 };
+      if (s.code === 'MATH') return { ...s, regularGrades: [7.0, 7.5, 7.0], midtermGrade: 7.0, finalGrade: 7.0, averageGrade: 7.1 };
+      return { ...s, averageGrade: Math.max(5.5, s.averageGrade - 0.9) };
+    }),
+  },
+  {
+    profile: {
+      id: 'student-04',
+      username: 'hs_dang',
+      studentCode: 'HS2025-0895',
+      fullName: 'Phạm Hải Đăng',
+      classRoom: '11A1 (Chuyên Tự Nhiên)',
+      schoolName: 'THPT Chu Văn An',
+      academicYear: '2025 - 2026',
+      semester: 'hk2',
+      standard: 'tt22',
+      conduct: 'Tốt',
+      isGradeLocked: true,
+      certificates: [
+        {
+          type: 'IELTS',
+          score: 6.0,
+          dateAcquired: '11/2025',
+          equivalentCompetencyScore: 130,
+        },
+      ],
+      achievements: [
+        {
+          id: 'ach-dang-1',
+          title: 'Giải Nhì Học Sinh Giỏi Môn Vật Lý Cấp Cụm',
+          category: 'academic',
+          level: 'district',
+          year: '2025',
+          points: 35,
+        },
+      ],
+      teacherComments: [
+        {
+          id: 'tc-dang-1',
+          teacherId: 'teacher-01',
+          teacherName: 'Cô Nguyễn Thị Mai',
+          teacherTitle: 'Giáo Viên Chủ Nhiệm & Tổ Trưởng Môn Toán',
+          date: '15/03/2026',
+          semester: 'Học kỳ 2 (Giữa kỳ)',
+          academicComment: 'Hải Đăng có thế mạnh vượt trội môn Vật lí (9.2) và Toán (8.8). Cần cải thiện thêm kỹ năng viết bài môn Ngữ văn.',
+          conductComment: 'Chăm chỉ, lễ phép, gương mẫu trong học tập.',
+          competencyEvaluation: 'Năng lực đạt 875/1000, rất có tiềm năng đỗ Bách Khoa khối A00 hoặc ĐGNL.',
+          recommendations: 'Duy trì phong độ môn Lý và nâng band IELTS lên 6.5+ để tăng cơ hội xét tuyển sớm.',
+        },
+      ],
+    },
+    subjects: initialSubjects.map(s => {
+      if (s.code === 'PHYS') return { ...s, regularGrades: [9.0, 9.5, 9.0], midtermGrade: 9.5, finalGrade: 9.0, averageGrade: 9.2 };
+      if (s.code === 'MATH') return { ...s, regularGrades: [8.5, 9.0, 8.5], midtermGrade: 9.0, finalGrade: 8.5, averageGrade: 8.8 };
+      return { ...s, averageGrade: s.averageGrade };
+    }),
+  },
+];

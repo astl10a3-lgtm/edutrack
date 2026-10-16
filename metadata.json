@@ -1,0 +1,8 @@
+{
+  "name": "Remix EduTrack AI - Sổ Điểm \u0026 Đánh Giá Năng Lực Học Sinh",
+  "description": "Nền tảng quản lý sổ điểm kiểu vnEdu, kiểm tra năng lực theo hệ quy chiếu mục tiêu, phân loại kỳ thi bằng tag và tạo lộ trình cải thiện cá nhân hóa với AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
